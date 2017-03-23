@@ -16,4 +16,5 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     savings.cpp \
-    checking.cpp
+    checking.cpp \
+    transfer.cpp
