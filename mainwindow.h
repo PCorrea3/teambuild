@@ -18,6 +18,7 @@ class MainWindow : public QWidget {
  public slots:
       void showSavings();
       void showCheckings();
+      void showTransfer();
 private:
      QPushButton *button1;
      QPushButton *button2;

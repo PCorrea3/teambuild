@@ -3,6 +3,7 @@
 #include "mainwindow.h"
 #include "savings.h"
 #include "checking.h"
+#include "transfer.h"
 #include <QPushButton>
 #include <QLabel>
 #include <QGridLayout>
@@ -42,12 +43,13 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     mainLayout->addWidget(ui2,2,1);         //Checking textbox
     ui2->setMaximumSize(140,30);
     mainLayout->addWidget(button3,3,0);     //Transfer button
-    mainLayout->addWidget(button4,4,0);     //Transaction button
+    mainLayout->addWidget(button4,4,0);     //Transaction history button
 
     setLayout(mainLayout);
 
     QObject::connect(this->button1, SIGNAL(clicked()),this, SLOT(showSavings()));
     QObject::connect(this->button2, SIGNAL(clicked()),this, SLOT(showCheckings()));
+    QObject::connect(this->button3, SIGNAL(clicked()),this, SLOT(showTransfer()));
 }
 
 MainWindow::~MainWindow() {}
@@ -60,4 +62,9 @@ void MainWindow::showSavings() {
 void MainWindow::showCheckings() {
   Checking* checkingAcc = new Checking();
   checkingAcc->show();
+}
+
+void MainWindow::showTransfer(){
+    Transfer* transfer = new Transfer();
+    transfer->show();
 }
