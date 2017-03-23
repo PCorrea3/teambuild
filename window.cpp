@@ -1,8 +1,6 @@
 // Window.cpp
 #include "window.h"
 #include "mainwindow.h"
-#include "savacc.h"
-#include "user.h"
 #include <QPushButton>
 #include <QLabel>
 #include <QGridLayout>
