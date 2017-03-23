@@ -1,4 +1,17 @@
-#ifndef TRANSFER_H
-#define TRANSFER_H
+#pragma once
+#include"window.h"
+#include<QLabel>
+#include<QPushButton>
 
-#endif // TRANSFER_H
+class QPushButton;
+class Transfer: public QWidget{
+        Q_OBJECT
+public:
+    Transfer();
+    ~Transfer();
+private:
+        QLabel *title;
+        QPushButton *ok;
+        QPushButton *cancel;
+
+};
