@@ -8,7 +8,8 @@ HEADERS += \
     window.h \
     mainwindow.h \
     savings.h \
-    checking.h
+    checking.h \
+    transfer.h
 
 SOURCES += \
     window.cpp \
