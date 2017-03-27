@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     ui->insertPlainText("Savings: $0.07");\
     ui->setReadOnly(true);
 
+
     QTextEdit *ui2 = new QTextEdit(this);
     ui2->insertPlainText("Available: $1,234,567.89");
     ui2->setReadOnly(true);

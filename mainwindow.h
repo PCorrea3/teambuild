@@ -5,6 +5,8 @@
 #include <QApplication>
 #include <QMainWindow>
 #include <QObject>
+#include<QSpinBox>
+#include<QTextEdit>
 
 class QPushButton;
 
@@ -24,4 +26,6 @@ private:
      QPushButton *button2;
      QPushButton *button3;
      QPushButton *button4;
+
+
 };
