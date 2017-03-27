@@ -27,7 +27,7 @@ Checking::Checking() {
 
     money = new QTextEdit(this);
     money->insertPlainText("Available: $1,234,567.89");
-    money->setReadOnly(true);
+    money->setReadOnly(true);   
 
     fee = new QTextEdit(this);
     fee->insertPlainText("Overdraft fee: $35.00");
