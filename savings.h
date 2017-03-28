@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QTextEdit>
 
+
 class Savings : public QWidget {
 public:
     Savings();

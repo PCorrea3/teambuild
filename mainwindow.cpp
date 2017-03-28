@@ -18,13 +18,25 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     button3 = new QPushButton("Transfer Funds");
     button4 = new QPushButton("Transaction History");
 
+    /*
     QTextEdit *ui = new QTextEdit(this);
     ui->insertPlainText("Savings: $0.07");\
     ui->setReadOnly(true);
+    */
 
+    QLineEdit *ui = new QLineEdit();
+    ui->setText(QString::number(checkings));
+    ui->setReadOnly(true);
+
+    QLineEdit *ui2 = new QLineEdit();
+    ui2->setText(QString::number(savings));
+    ui2->setReadOnly(true);
+
+    /*
     QTextEdit *ui2 = new QTextEdit(this);
     ui2->insertPlainText("Available: $1,234,567.89");
     ui2->setReadOnly(true);
+    */
 
     QLabel* label=new QLabel("Bank Application");
     QFont font = label->font();
@@ -36,11 +48,13 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     mainLayout->setColumnStretch(1,1);
     mainLayout->addWidget(label,0,0);       //title
     label->setMaximumSize(180,40);
-    mainLayout->addWidget(button1,1,0);     //Saving button
-    mainLayout->addWidget(ui,1,1);          //Saving textbox
+    mainLayout->addWidget(button2,1,0);      //Checking button
+
+    mainLayout->addWidget(ui,1,1);          //Checking textbox
     ui->setMaximumSize(140,30);
-    mainLayout->addWidget(button2,2,0);     //Checking button
-    mainLayout->addWidget(ui2,2,1);         //Checking textbox
+    mainLayout->addWidget(button1,2,0);     //Saving button
+
+    mainLayout->addWidget(ui2,2,1);         //Saving textbox
     ui2->setMaximumSize(140,30);
     mainLayout->addWidget(button3,3,0);     //Transfer button
     mainLayout->addWidget(button4,4,0);     //Transaction history button

@@ -6,6 +6,7 @@
 #include <QTextEdit>
 #include <QObject>
 #include <QLabel>
+#include<QLineEdit>
 
 class QPushButton;
 class Checking : public QWidget {
