@@ -18,25 +18,13 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     button3 = new QPushButton("Transfer Funds");
     button4 = new QPushButton("Transaction History");
 
-    /*
-    QTextEdit *ui = new QTextEdit(this);
-    ui->insertPlainText("Savings: $0.07");\
-    ui->setReadOnly(true);
-    */
-
     QLineEdit *ui = new QLineEdit();
-    ui->setText(QString::number(checkings));
+    ui->setText(QString::number(checking,'F',2));
     ui->setReadOnly(true);
 
     QLineEdit *ui2 = new QLineEdit();
-    ui2->setText(QString::number(savings));
+    ui2->setText(QString::number(savings, 'F', 2));
     ui2->setReadOnly(true);
-
-    /*
-    QTextEdit *ui2 = new QTextEdit(this);
-    ui2->insertPlainText("Available: $1,234,567.89");
-    ui2->setReadOnly(true);
-    */
 
     QLabel* label=new QLabel("Bank Application");
     QFont font = label->font();
@@ -67,7 +55,14 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
 }
 
 MainWindow::~MainWindow() {}
-
+double MainWindow::debtChecking(double amt) {
+    this->checking+=amt;
+    return checking;
+}
+double MainWindow::debtSavings(double amt) {
+    savings+=amt;
+    return savings;
+}
 void MainWindow::showSavings() {
   Savings* savingAcc = new Savings();
   savingAcc->show();
@@ -82,3 +77,5 @@ void MainWindow::showTransfer(){
     Transfer* transfer = new Transfer();
     transfer->show();
 }
+void MainWindow::transferChecking(){}
+void MainWindow::transferSavings(){}
