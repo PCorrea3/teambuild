@@ -22,8 +22,8 @@ Transfer::Transfer(){
     accTransferT->setFont(font2);
 
     transferT = new QComboBox(this);
-    transferT->addItem(tr("Savings Account"));
     transferT->addItem(tr("Checking Account"));
+	transferT->addItem(tr("Savings Account"));
 
     QSpinBox *priceSpinBox = new QSpinBox;
     priceSpinBox->setMinimum(0);
@@ -46,15 +46,18 @@ Transfer::Transfer(){
 
     setLayout(layout);
 
-    QObject::connect(this->cancel, SIGNAL(clicked()),this, SLOT(cancelButton()));
+	QObject::connect(
+				this->cancel, SIGNAL(clicked()),
+				this, SLOT(cancelButton())
+			);
     QObject::connect(
-                this->transferF, SIGNAL(currentIndexChanged(index)),
-                this, SLOT(dropDownChange(index))
-                );
+				this->transferF, SIGNAL(currentIndexChanged(int)),
+				this, SLOT(dropDownChange(int))
+			);
+	dropDownChange(0);
 }
 Transfer::~Transfer() {}
 void Transfer::dropDownChange(int index) {
-    qDebug() << "HI";
     if(index==0) {
         selected = AccountType::CHECKING;
         transferT->setCurrentIndex(1);
