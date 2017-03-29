@@ -4,6 +4,7 @@
 #include<QPushButton>
 #include<QSpinBox>
 #include<QComboBox>
+#include<QDebug>
 
 class QPushButton;
 class Transfer: public QWidget{
@@ -11,10 +12,12 @@ class Transfer: public QWidget{
 public:
     Transfer();
     ~Transfer();
+    enum AccountType{NONE, CHECKING, SAVINGS};
 signals:
 
 public slots:
      void cancelButton();
+     void dropDownChange(int index);
 private:
         QLabel *title;
         QPushButton *ok;
@@ -24,6 +27,5 @@ private:
         QComboBox *transferF;
         QComboBox *transferT;
         QDoubleSpinBox *priceSpinBox;
-
-
+        AccountType selected = NONE;
 };

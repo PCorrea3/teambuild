@@ -14,6 +14,8 @@ class MainWindow : public QWidget {
  public:
       MainWindow(QWidget *parent = 0);
       ~MainWindow();
+      double debtChecking(double amt);
+      double debtSavings(double amt);
 
  signals:
 
@@ -21,9 +23,11 @@ class MainWindow : public QWidget {
       void showSavings();
       void showCheckings();
       void showTransfer();
+      void transferChecking();
+      void transferSavings();
 private:
-      double checkings = 12345.67;
-      double savings = 0.07;
+      double checking = 0.00;
+      double savings = 0.00;
 
      QPushButton *button1;
      QPushButton *button2;

@@ -14,17 +14,16 @@ Transfer::Transfer(){
     font2.setPointSize(10);
     accTransferF->setFont(font2);
 
-    transferF = new QComboBox;
+    transferF = new QComboBox(this);
     transferF->addItem(tr("Checking Account"));
     transferF->addItem(tr("Savings Account"));
 
     accTransferT = new QLabel("Account to Transfer to:");
     accTransferT->setFont(font2);
 
-    transferT = new QComboBox;
-     transferT->addItem(tr("Savings Account"));
+    transferT = new QComboBox(this);
     transferT->addItem(tr("Checking Account"));
-
+	transferT->addItem(tr("Savings Account"));
 
     QSpinBox *priceSpinBox = new QSpinBox;
     priceSpinBox->setMinimum(0);
@@ -41,18 +40,33 @@ Transfer::Transfer(){
     layout->addWidget(transferF,1,1);
     layout->addWidget(accTransferT,2,0);
     layout->addWidget(transferT,2,1);
-     layout->addWidget(priceSpinBox,3,0);
+    layout->addWidget(priceSpinBox,3,0);
     layout->addWidget(ok, 4, 0);
     layout->addWidget(cancel, 4,1);
 
     setLayout(layout);
 
-      QObject::connect(this->cancel, SIGNAL(clicked()),this, SLOT(cancelButton()));
+	QObject::connect(
+				this->cancel, SIGNAL(clicked()),
+				this, SLOT(cancelButton())
+			);
+    QObject::connect(
+				this->transferF, SIGNAL(currentIndexChanged(int)),
+				this, SLOT(dropDownChange(int))
+			);
+	dropDownChange(0);
 }
 Transfer::~Transfer() {}
+void Transfer::dropDownChange(int index) {
+    if(index==0) {
+        selected = AccountType::CHECKING;
+        transferT->setCurrentIndex(1);
+    } else if(index==1) {
+        selected = AccountType::SAVINGS;
+        transferT->setCurrentIndex(0);
+    }
+}
 
-void Transfer::cancelButton()
-{
+void Transfer::cancelButton() {
      this->close();
-
 }
