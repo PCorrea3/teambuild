@@ -2,9 +2,13 @@
 #include"window.h"
 #include<QLabel>
 #include<QPushButton>
-#include<QSpinBox>
+#include<QLineEdit>
 #include<QComboBox>
 #include<QDebug>
+#include <QString>
+#include <QGridLayout>
+#include <QFont>
+#include <QDoubleValidator>
 
 class QPushButton;
 class Transfer: public QWidget{
@@ -13,6 +17,9 @@ public:
     Transfer();
     ~Transfer();
     enum AccountType{NONE, CHECKING, SAVINGS};
+    double getTextAmt();
+    Transfer::AccountType getSelected();
+    QPushButton *getTransferButton();
 signals:
 
 public slots:
@@ -20,12 +27,12 @@ public slots:
      void dropDownChange(int index);
 private:
         QLabel *title;
-        QPushButton *ok;
+        QPushButton *transferButton;
         QPushButton *cancel;
         QLabel *accTransferF;
         QLabel *accTransferT;
         QComboBox *transferF;
         QComboBox *transferT;
-        QDoubleSpinBox *priceSpinBox;
+        QLineEdit* transferBox = new QLineEdit(this);
         AccountType selected = NONE;
 };
