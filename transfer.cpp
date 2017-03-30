@@ -1,6 +1,4 @@
 #include "transfer.h"
-#include <QGridLayout>
-#include <QFont>
 
 Transfer::Transfer(){
     //setFixedSize(320, 220);
@@ -25,12 +23,10 @@ Transfer::Transfer(){
     transferT->addItem(tr("Checking Account"));
 	transferT->addItem(tr("Savings Account"));
 
-    QSpinBox *priceSpinBox = new QSpinBox;
-    priceSpinBox->setMinimum(0);
-    priceSpinBox->setMaximum(100000000);
-    priceSpinBox->setPrefix("Transfer:$");
+    QDoubleValidator* valid = new QDoubleValidator(0.00, 9999999999, 2, this);
+    transferBox->setValidator(valid);
 
-    ok = new QPushButton("Ok");
+    transferButton = new QPushButton("Transfer");
     cancel = new QPushButton("Cancel");
 
     QGridLayout *layout = new QGridLayout();
@@ -40,8 +36,8 @@ Transfer::Transfer(){
     layout->addWidget(transferF,1,1);
     layout->addWidget(accTransferT,2,0);
     layout->addWidget(transferT,2,1);
-    layout->addWidget(priceSpinBox,3,0);
-    layout->addWidget(ok, 4, 0);
+    layout->addWidget(transferBox,3,0);
+    layout->addWidget(transferButton, 4, 0);
     layout->addWidget(cancel, 4,1);
 
     setLayout(layout);
@@ -67,6 +63,17 @@ void Transfer::dropDownChange(int index) {
     }
 }
 
+double Transfer::getTextAmt() {
+    return this->transferBox->text().toDouble();     //returns double
+}
+
+Transfer::AccountType Transfer::getSelected() {
+    return selected;
+}
+
+QPushButton* Transfer::getTransferButton() {
+    return transferButton;
+}
 void Transfer::cancelButton() {
      this->close();
 }
