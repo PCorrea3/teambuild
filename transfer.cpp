@@ -50,6 +50,8 @@ Transfer::Transfer(){
 				this->transferF, SIGNAL(currentIndexChanged(int)),
 				this, SLOT(dropDownChange(int))
 			);
+
+
 	dropDownChange(0);
 }
 Transfer::~Transfer() {}

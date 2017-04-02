@@ -9,9 +9,10 @@
 #include <QLabel>
 #include<QLineEdit>
 
-class QPushButton;
-class Checking : public QWidget {
-    Q_OBJECT
+
+
+class Checking : public QWidget{
+    // Q_OBJECT
 public:
      Checking();
     ~Checking();
@@ -21,4 +22,5 @@ private:
     QLabel *cAccount;
     QTextEdit *money;
     QTextEdit *fee;
+
 };
