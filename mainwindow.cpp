@@ -81,21 +81,27 @@ void MainWindow::transferFunds() {
     double amt = transWindow->getTextAmt();
 
     if(transWindow->getSelected() == Transfer::AccountType::CHECKING) {
-        savings+=amt;
-        checking-=amt;
-        if(checking<0)
+        if(checking > -300)
         {
-          checking -= 35;
-         }
+            if(checking<=0)
+            {
+            checking -=35;
+            }
+
+
+          savings+=amt;
+          checking-=amt;
+       }
+
     } else if(transWindow->getSelected() == Transfer::AccountType::SAVINGS) {
         if(savings>=amt)
         {
-        savings-=amt;
-        checking+=amt;
-       }
+          savings-=amt;
+          checking+=amt;
+        }
         else if(savings<amt)
         {
-            amt = 0;
+         amt = 0;
 
         }
     }
