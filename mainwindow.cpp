@@ -13,16 +13,16 @@
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     setFixedSize(420, 320);
 
+    setVisible(false);
     button1 = new QPushButton("Savings Account");
     button2 = new QPushButton("Checking Account");
     button3 = new QPushButton("Transfer Funds");
     button4 = new QPushButton("Transaction History");
 
-    QLineEdit *ui = new QLineEdit();
     ui->setText(QString::number(checking,'F',2));
     ui->setReadOnly(true);
 
-    QLineEdit *ui2 = new QLineEdit();
+
     ui2->setText(QString::number(savings, 'F', 2));
     ui2->setReadOnly(true);
 
@@ -52,6 +52,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     QObject::connect(this->button1, SIGNAL(clicked()),this, SLOT(showSavings()));
     QObject::connect(this->button2, SIGNAL(clicked()),this, SLOT(showCheckings()));
     QObject::connect(this->button3, SIGNAL(clicked()),this, SLOT(showTransfer()));
+    connect(this->transWindow->getTransferButton(),SIGNAL(clicked()),
+           this, SLOT(transferFunds()));
 }
 
 MainWindow::~MainWindow() {}
@@ -74,8 +76,17 @@ void MainWindow::showCheckings() {
 }
 
 void MainWindow::showTransfer(){
-    Transfer* transfer = new Transfer();
-    transfer->show();
+    transWindow->setVisible(!transWindow->isVisible());
 }
-void MainWindow::transferChecking(){}
-void MainWindow::transferSavings(){}
+void MainWindow::transferFunds() {
+    double amt = transWindow->getTextAmt();
+    if(transWindow->getSelected() == Transfer::AccountType::CHECKING) {
+        savings+=amt;
+        checking-=amt;
+    } else if(transWindow->getSelected() == Transfer::AccountType::SAVINGS) {
+        savings-=amt;
+        checking+=amt;
+    }
+     ui->setText(QString::number(checking,'F',2));
+    ui2->setText(QString::number(savings, 'F', 2));
+}

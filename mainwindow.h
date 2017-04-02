@@ -5,8 +5,8 @@
 #include <QApplication>
 #include <QMainWindow>
 #include <QObject>
-#include<QTextEdit>
-
+#include <QTextEdit>
+#include "transfer.h"
 class QPushButton;
 
 class MainWindow : public QWidget {
@@ -16,23 +16,21 @@ class MainWindow : public QWidget {
       ~MainWindow();
       double debtChecking(double amt);
       double debtSavings(double amt);
-
+      double checking = 300.00;
+      double savings = 200.00;
  signals:
 
  public slots:
       void showSavings();
       void showCheckings();
       void showTransfer();
-      void transferChecking();
-      void transferSavings();
+      void transferFunds();
 private:
-      double checking = 0.00;
-      double savings = 0.00;
-
      QPushButton *button1;
      QPushButton *button2;
      QPushButton *button3;
      QPushButton *button4;
-
-
+     Transfer* transWindow = new Transfer();
+     QLineEdit *ui = new QLineEdit();
+     QLineEdit *ui2 = new QLineEdit();
 };

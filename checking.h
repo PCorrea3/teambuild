@@ -1,5 +1,6 @@
-//savings.h
+//checking.h
 #pragma once
+#include "mainwindow.h"
 #include <QWidget>
 #include <QApplication>
 #include <QMainWindow>
