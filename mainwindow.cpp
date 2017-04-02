@@ -22,7 +22,6 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     ui->setText(QString::number(checking,'F',2));
     ui->setReadOnly(true);
 
-
     ui2->setText(QString::number(savings, 'F', 2));
     ui2->setReadOnly(true);
 
@@ -49,9 +48,9 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
 
     setLayout(mainLayout);
 
-    QObject::connect(this->button1, SIGNAL(clicked()),this, SLOT(showSavings()));
-    QObject::connect(this->button2, SIGNAL(clicked()),this, SLOT(showCheckings()));
-    QObject::connect(this->button3, SIGNAL(clicked()),this, SLOT(showTransfer()));
+    connect(this->button1, SIGNAL(clicked()),this, SLOT(showSavings()));
+    connect(this->button2, SIGNAL(clicked()),this, SLOT(showCheckings()));
+    connect(this->button3, SIGNAL(clicked()),this, SLOT(showTransfer()));
     connect(this->transWindow->getTransferButton(),SIGNAL(clicked()),
            this, SLOT(transferFunds()));
 }
@@ -80,13 +79,31 @@ void MainWindow::showTransfer(){
 }
 void MainWindow::transferFunds() {
     double amt = transWindow->getTextAmt();
+
     if(transWindow->getSelected() == Transfer::AccountType::CHECKING) {
         savings+=amt;
         checking-=amt;
+        if(checking<0)
+        {
+          checking -= 35;
+         }
     } else if(transWindow->getSelected() == Transfer::AccountType::SAVINGS) {
+        if(savings>=amt)
+        {
         savings-=amt;
         checking+=amt;
+       }
+        else if(savings<amt)
+        {
+            amt = 0;
+
+        }
     }
+
+
+
      ui->setText(QString::number(checking,'F',2));
     ui2->setText(QString::number(savings, 'F', 2));
 }
+
+

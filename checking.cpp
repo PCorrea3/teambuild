@@ -25,8 +25,13 @@ Checking::Checking() {
     name->setFont(font2);
     cAccount->setFont(font2);
 
+   // money = new QLineEdit();
+    //money->setText(QString::number(checking,'F',2));
+    //money->setReadOnly(true);
+
+
     money = new QTextEdit(this);
-    money->insertPlainText("Available: $1,234,567.89");
+    money->insertPlainText(QString::number(0,'F',2));
     money->setReadOnly(true);   
 
     fee = new QTextEdit(this);
@@ -45,6 +50,9 @@ Checking::Checking() {
     layout->addWidget(fee, 4, 0);
 
     setLayout(layout);
+
 }
 
 Checking::~Checking() {}
+
+

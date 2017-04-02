@@ -25,7 +25,7 @@ Savings::Savings() {
     sAccount->setFont(font2);
 
     money = new QTextEdit(this);
-    money->insertPlainText("Savings: $0.07");
+    money->insertPlainText(QString::number(0,'F',2));
     money->setReadOnly(true);
 
     interest = new QTextEdit(this);
