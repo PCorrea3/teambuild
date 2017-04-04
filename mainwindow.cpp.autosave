@@ -75,11 +75,11 @@ void MainWindow::transferFunds() {
 
     if(transWindow->getSelected() == Transfer::AccountType::CHECKING) {
         if((checking - amt - 35) >= -300) {
-            if(checking<=0) {
+            savings+=amt;
+            checking-=amt;
+            if(checking < 0) {
             checking -=35;
             }
-          savings+=amt;
-          checking-=amt;
           emit onCheckingBalanceChange(checking);
        }
     } else if(transWindow->getSelected() == Transfer::AccountType::SAVINGS) {

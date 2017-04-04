@@ -25,14 +25,9 @@ Checking::Checking() {
     name->setFont(font2);
     cAccount->setFont(font2);
 
-   // money = new QLineEdit();
-    //money->setText(QString::number(checking,'F',2));
-    //money->setReadOnly(true);
-
-
-    money = new QTextEdit(this);
-    money->insertPlainText(QString::number(0,'F',2));
-    money->setReadOnly(true);   
+    ui = new QTextEdit(this);
+    ui->insertPlainText(QString::number(0,'F',2));
+    ui->setReadOnly(true);
 
     fee = new QTextEdit(this);
     fee->insertPlainText("Overdraft fee: $35.00");
@@ -46,7 +41,7 @@ Checking::Checking() {
     name->setMaximumSize(140,30);
     layout->addWidget(cAccount, 2, 0);
     cAccount->setMaximumSize(180,40);
-    layout->addWidget(money, 3, 0);
+    layout->addWidget(ui, 3, 0);
     layout->addWidget(fee, 4, 0);
 
     setLayout(layout);
@@ -55,4 +50,7 @@ Checking::Checking() {
 
 Checking::~Checking() {}
 
-
+void Checking::updateCheckingBalance(double balance) {
+    qDebug() << "Hi";
+        ui->insertPlainText(QString::number(balance,'F',2));
+}

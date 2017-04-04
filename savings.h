@@ -15,6 +15,6 @@ private:
     QLabel *title;
     QLabel *name;
     QLabel *sAccount;
-    QTextEdit *money;
+    QTextEdit *savingsAcct;
     QTextEdit *interest;
 };

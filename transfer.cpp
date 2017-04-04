@@ -51,7 +51,6 @@ Transfer::Transfer(){
 				this, SLOT(dropDownChange(int))
 			);
 
-
 	dropDownChange(0);
 }
 Transfer::~Transfer() {}

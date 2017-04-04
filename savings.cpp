@@ -24,9 +24,9 @@ Savings::Savings() {
     name->setFont(font2);
     sAccount->setFont(font2);
 
-    money = new QTextEdit(this);
-    money->insertPlainText(QString::number(0,'F',2));
-    money->setReadOnly(true);
+    savingsAcct = new QTextEdit(this);
+    savingsAcct->insertPlainText(QString::number(0,'F',2));
+    savingsAcct->setReadOnly(true);
 
     interest = new QTextEdit(this);
     interest->insertPlainText("Interest: 0.2%");
@@ -39,7 +39,7 @@ Savings::Savings() {
     layout->addWidget(name,1,0);
     layout->addWidget(sAccount,2,0);
     sAccount->setMaximumSize(180,40);
-    layout->addWidget(money,3,0);
+    layout->addWidget(savingsAcct,3,0);
     layout->addWidget(interest, 4, 0);
 
     setLayout(layout);
