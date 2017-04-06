@@ -24,10 +24,8 @@ class MainWindow : public QWidget {
       double debtSavings(double amt);
       double checking = 300.00;
       double savings = 200.00;
- signals:
-      void onCheckingBalanceChange(double);
-      void onSavingsBalanceChange(double);
- public slots:
+
+	  public slots:
       void showSavings();
       void showCheckings();
       void showTransfer();
@@ -39,7 +37,8 @@ private:
      QPushButton *button3;
      QPushButton *button4;
      Checking* checkingAcc = new Checking();
-     Transfer* transWindow = new Transfer();
+	 Savings* savingsAcc = new Savings();
+	 Transfer* transWindow = new Transfer();
      QLineEdit *ui = new QLineEdit();
      QLineEdit *ui2 = new QLineEdit();
 };

@@ -39,14 +39,14 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     mainLayout->addWidget(button4,4,0);     //Transaction history button
 
     setLayout(mainLayout);
+	checkingAcc->updateCheckingBalance(checking);
+	savingsAcc->updateSavingsBalance(savings);
 
     connect(this->button1, SIGNAL(clicked()),this, SLOT(showSavings()));
     connect(this->button2, SIGNAL(clicked()),this, SLOT(showCheckings()));
     connect(this->button3, SIGNAL(clicked()),this, SLOT(showTransfer()));
     connect(this->transWindow->getTransferButton(),SIGNAL(clicked()),
            this, SLOT(transferFunds()));
-    connect(this, SIGNAL(onCheckingBalanceChange(double)),
-            this->checkingAcc, SLOT(updateCheckingBalance(double)));
 }
 
 MainWindow::~MainWindow() {}
@@ -59,8 +59,7 @@ double MainWindow::debtSavings(double amt) {
     return savings;
 }
 void MainWindow::showSavings() {
-  Savings* savingAcc = new Savings();
-  savingAcc->show();
+  savingsAcc->show();
 }
 
 void MainWindow::showCheckings() {
@@ -80,16 +79,16 @@ void MainWindow::transferFunds() {
             }
           savings+=amt;
           checking-=amt;
-          emit onCheckingBalanceChange(checking);
        }
     } else if(transWindow->getSelected() == Transfer::AccountType::SAVINGS) {
         if(savings>=amt) {
           savings-=amt;
           checking+=amt;
-          //emit onSavingsBalanceChange(savings);
         }
     }
-
     ui->setText(QString::number(checking,'F',2));
     ui2->setText(QString::number(savings, 'F', 2));
+	checkingAcc->updateCheckingBalance(checking);
+	savingsAcc->updateSavingsBalance(savings);
 }
+

@@ -1,12 +1,5 @@
 //savings.cpp
 #include "savings.h"
-#include "mainwindow.h"
-#include "window.h"
-#include <QLabel>
-#include <QGridLayout>
-#include <QString>
-#include <QTextEdit>
-#include <QFont>
 
 Savings::Savings() {
     setFixedSize(240, 160);
@@ -24,12 +17,12 @@ Savings::Savings() {
     name->setFont(font2);
     sAccount->setFont(font2);
 
-    savingsAcct = new QTextEdit(this);
-    savingsAcct->insertPlainText(QString::number(0,'F',2));
+    savingsAcct = new QLineEdit(this);
+    savingsAcct->setText(QString::number(0,'F',2));
     savingsAcct->setReadOnly(true);
 
-    interest = new QTextEdit(this);
-    interest->insertPlainText("Interest: 0.2%");
+    interest = new QLineEdit(this);
+    interest->setText("Interest: 0.2%");
     interest->setReadOnly(true);
 
     QGridLayout *layout = new QGridLayout();
@@ -43,6 +36,11 @@ Savings::Savings() {
     layout->addWidget(interest, 4, 0);
 
     setLayout(layout);
+	setVisible(false);
 }
 
 Savings::~Savings() {}
+
+void Savings::updateSavingsBalance(double amt) {
+	savingsAcct->setText(QString::number(amt, 'F', 2));
+}
