@@ -1,12 +1,18 @@
 //MainWindow.h
 #pragma once
-
+#include "savings.h"
+#include "checking.h"
+#include "transfer.h"
+#include <QPushButton>
+#include <QLabel>
+#include <QGridLayout>
+#include <QTextEdit>
+#include <QFont>
 #include <QWidget>
 #include <QApplication>
 #include <QMainWindow>
 #include <QObject>
-#include <QTextEdit>
-#include "transfer.h"
+
 class QPushButton;
 
 class MainWindow : public QWidget {
@@ -18,19 +24,21 @@ class MainWindow : public QWidget {
       double debtSavings(double amt);
       double checking = 300.00;
       double savings = 200.00;
- signals:
 
- public slots:
+	  public slots:
       void showSavings();
       void showCheckings();
       void showTransfer();
       void transferFunds();
+      //void updateSavingsBalance(double balance);
 private:
      QPushButton *button1;
      QPushButton *button2;
      QPushButton *button3;
      QPushButton *button4;
-     Transfer* transWindow = new Transfer();
+     Checking* checkingAcc = new Checking();
+	 Savings* savingsAcc = new Savings();
+	 Transfer* transWindow = new Transfer();
      QLineEdit *ui = new QLineEdit();
      QLineEdit *ui2 = new QLineEdit();
 };

@@ -1,20 +1,21 @@
 // savings.h
 #pragma once
 
-#include "window.h"
-#include "mainwindow.h"
 #include <QLabel>
-#include <QTextEdit>
-
+#include <QGridLayout>
+#include <QString>
+#include <QFont>
+#include <QLineEdit>
 
 class Savings : public QWidget {
 public:
     Savings();
     ~Savings();
+	void updateSavingsBalance(double amt);
 private:
     QLabel *title;
     QLabel *name;
     QLabel *sAccount;
-    QTextEdit *money;
-    QTextEdit *interest;
+    QLineEdit *savingsAcct;
+    QLineEdit *interest;
 };

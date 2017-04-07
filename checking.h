@@ -16,11 +16,12 @@ class Checking : public QWidget{
 public:
      Checking();
     ~Checking();
+	void updateCheckingBalance(double balance);
+
 private:
     QLabel *title;
     QLabel *name;
     QLabel *cAccount;
-    QTextEdit *money;
-    QTextEdit *fee;
-
+    QLineEdit *ui;
+    QLineEdit *fee;
 };
