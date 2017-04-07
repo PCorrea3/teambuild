@@ -1,6 +1,5 @@
 //checking.h
 #pragma once
-#include "mainwindow.h"
 #include <QWidget>
 #include <QApplication>
 #include <QMainWindow>
@@ -8,6 +7,9 @@
 #include <QObject>
 #include <QLabel>
 #include<QLineEdit>
+#include <QPushButton>
+#include <QGridLayout>
+#include <QFont>
 
 
 
@@ -22,6 +24,6 @@ private:
     QLabel *title;
     QLabel *name;
     QLabel *cAccount;
-    QLineEdit *ui;
+    QLineEdit *checkingAcct;
     QLineEdit *fee;
 };
