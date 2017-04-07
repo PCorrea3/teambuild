@@ -1,14 +1,6 @@
 // MainWindow.cpp
 #include "window.h"
 #include "mainwindow.h"
-#include "savings.h"
-#include "checking.h"
-#include "transfer.h"
-#include <QPushButton>
-#include <QLabel>
-#include <QGridLayout>
-#include <QTextEdit>
-#include <QFont>
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     setFixedSize(420, 320);
@@ -47,6 +39,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     mainLayout->addWidget(button4,4,0);     //Transaction history button
 
     setLayout(mainLayout);
+	checkingAcc->updateCheckingBalance(checking);
+	savingsAcc->updateSavingsBalance(savings);
 
     connect(this->button1, SIGNAL(clicked()),this, SLOT(showSavings()));
     connect(this->button2, SIGNAL(clicked()),this, SLOT(showCheckings()));
@@ -65,12 +59,10 @@ double MainWindow::debtSavings(double amt) {
     return savings;
 }
 void MainWindow::showSavings() {
-  Savings* savingAcc = new Savings();
-  savingAcc->show();
+  savingsAcc->show();
 }
 
 void MainWindow::showCheckings() {
-  Checking* checkingAcc = new Checking();
   checkingAcc->show();
 }
 
@@ -81,35 +73,22 @@ void MainWindow::transferFunds() {
     double amt = transWindow->getTextAmt();
 
     if(transWindow->getSelected() == Transfer::AccountType::CHECKING) {
-        if(checking > -300)
-        {
-            if(checking<=0)
-            {
+        if((checking - amt - 35) >= -300) {
+            if(checking<=0) {
             checking -=35;
             }
-
-
           savings+=amt;
           checking-=amt;
        }
-
     } else if(transWindow->getSelected() == Transfer::AccountType::SAVINGS) {
-        if(savings>=amt)
-        {
+        if(savings>=amt) {
           savings-=amt;
           checking+=amt;
         }
-        else if(savings<amt)
-        {
-         amt = 0;
-
-        }
     }
-
-
-
-     ui->setText(QString::number(checking,'F',2));
+    ui->setText(QString::number(checking,'F',2));
     ui2->setText(QString::number(savings, 'F', 2));
+	checkingAcc->updateCheckingBalance(checking);
+	savingsAcc->updateSavingsBalance(savings);
 }
-
 
