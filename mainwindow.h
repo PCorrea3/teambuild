@@ -30,15 +30,15 @@ class MainWindow : public QWidget {
       void showCheckings();
       void showTransfer();
       void transferFunds();
-      //void updateSavingsBalance(double balance);
+
 private:
-     QPushButton *button1;
-     QPushButton *button2;
-     QPushButton *button3;
-     QPushButton *button4;
+     QPushButton *savingsButton;
+     QPushButton *checkingButton;
+     QPushButton *transferButton;
+     QPushButton *historyButton;
      Checking* checkingAcc = new Checking();
 	 Savings* savingsAcc = new Savings();
 	 Transfer* transWindow = new Transfer();
-     QLineEdit *ui = new QLineEdit();
-     QLineEdit *ui2 = new QLineEdit();
+     QLineEdit *checkingAmt = new QLineEdit();
+     QLineEdit *savingsAmt = new QLineEdit();
 };

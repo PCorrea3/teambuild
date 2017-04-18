@@ -1,21 +1,20 @@
 // MainWindow.cpp
-#include "window.h"
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     setFixedSize(420, 320);
 
     setVisible(false);
-    button1 = new QPushButton("Savings Account");
-    button2 = new QPushButton("Checking Account");
-    button3 = new QPushButton("Transfer Funds");
-    button4 = new QPushButton("Transaction History");
+    savingsButton = new QPushButton("Savings Account");
+    checkingButton = new QPushButton("Checking Account");
+    transferButton = new QPushButton("Transfer Funds");
+    historyButton = new QPushButton("Transaction History");
 
-    ui->setText(QString::number(checking,'F',2));
-    ui->setReadOnly(true);
+    checkingAmt->setText(QString::number(checking,'F',2));
+    checkingAmt->setReadOnly(true);
 
-    ui2->setText(QString::number(savings, 'F', 2));
-    ui2->setReadOnly(true);
+    savingsAmt->setText(QString::number(savings, 'F', 2));
+    savingsAmt->setReadOnly(true);
 
     QLabel* label=new QLabel("Bank Application");
     QFont font = label->font();
@@ -27,24 +26,24 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     mainLayout->setColumnStretch(1,1);
     mainLayout->addWidget(label,0,0);       //title
     label->setMaximumSize(180,40);
-    mainLayout->addWidget(button2,1,0);      //Checking button
+    mainLayout->addWidget(checkingButton,1,0);    //Checking button
 
-    mainLayout->addWidget(ui,1,1);          //Checking textbox
-    ui->setMaximumSize(140,30);
-    mainLayout->addWidget(button1,2,0);     //Saving button
+    mainLayout->addWidget(checkingAmt,1,1);          //Checking textbox
+    checkingAmt->setMaximumSize(140,30);
+    mainLayout->addWidget(savingsButton,2,0);     //Saving button
 
-    mainLayout->addWidget(ui2,2,1);         //Saving textbox
-    ui2->setMaximumSize(140,30);
-    mainLayout->addWidget(button3,3,0);     //Transfer button
-    mainLayout->addWidget(button4,4,0);     //Transaction history button
+    mainLayout->addWidget(savingsAmt,2,1);         //Saving textbox
+    savingsAmt->setMaximumSize(140,30);
+    mainLayout->addWidget(transferButton,3,0);     //Transfer button
+    mainLayout->addWidget(historyButton,4,0);     //Transaction history button
 
     setLayout(mainLayout);
 	checkingAcc->updateCheckingBalance(checking);
 	savingsAcc->updateSavingsBalance(savings);
 
-    connect(this->button1, SIGNAL(clicked()),this, SLOT(showSavings()));
-    connect(this->button2, SIGNAL(clicked()),this, SLOT(showCheckings()));
-    connect(this->button3, SIGNAL(clicked()),this, SLOT(showTransfer()));
+    connect(this->savingsButton, SIGNAL(clicked()),this, SLOT(showSavings()));
+    connect(this->checkingButton, SIGNAL(clicked()),this, SLOT(showCheckings()));
+    connect(this->transferButton, SIGNAL(clicked()),this, SLOT(showTransfer()));
     connect(this->transWindow->getTransferButton(),SIGNAL(clicked()),
            this, SLOT(transferFunds()));
 }
@@ -86,8 +85,8 @@ void MainWindow::transferFunds() {
           checking+=amt;
         }
     }
-    ui->setText(QString::number(checking,'F',2));
-    ui2->setText(QString::number(savings, 'F', 2));
+    checkingAmt->setText(QString::number(checking,'F',2));
+    savingsAmt->setText(QString::number(savings, 'F', 2));
 	checkingAcc->updateCheckingBalance(checking);
 	savingsAcc->updateSavingsBalance(savings);
 }

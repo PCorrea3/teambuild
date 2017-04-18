@@ -6,6 +6,12 @@
 #include <QMainWindow>
 #include <QObject>
 #include <QLineEdit>
+#include <QPushButton>
+#include <QGridLayout>
+#include <QFont>
+#include<QLabel>
+#include<QString>
+#include<QByteArray>
 
 class QPushButton;
 
@@ -20,6 +26,12 @@ public slots:
      void showWindow();
 private:
      QPushButton *submit;
-     QLineEdit *ui;
-     QLineEdit *ui2;
+     QLabel *usernameLabel;
+     QLabel *passwordLabel;
+     QLineEdit *username;
+     QLineEdit *password;
+     const char* characters;
+     QString str = "";
+     QString str2 = "";
+
 };
