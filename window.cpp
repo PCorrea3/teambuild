@@ -1,7 +1,7 @@
 // Window.cpp
 #include "window.h"
 #include "mainwindow.h"
-
+#include<QDebug>
 
 Window::Window(QWidget *parent) : QWidget(parent) {
     setFixedSize(240, 180);
@@ -14,8 +14,11 @@ Window::Window(QWidget *parent) : QWidget(parent) {
     usernameLabel->setFont(font);
     passwordLabel->setFont(font);
 
+
+
     username = new QLineEdit(this);
     username->setMaximumSize(120,30);
+
     password = new QLineEdit(this);
     password->setMaximumSize(120,30);
     password->setEchoMode(QLineEdit::Password);
@@ -32,11 +35,20 @@ Window::Window(QWidget *parent) : QWidget(parent) {
     setLayout(layout);
 
     QObject::connect(this->submit, SIGNAL(clicked()),this, SLOT(showWindow()));
+
 }
 Window::~Window() {}
 
 void Window::showWindow() {
+     str = username->text();
+     str2 = password->text();
+    if(str == "username" && str2 == "password")
+    {
+
     MainWindow* mainW = new MainWindow();
     mainW->show();
     this->close();
+    }
+
+
 }
