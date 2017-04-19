@@ -14,8 +14,6 @@ Window::Window(QWidget *parent) : QWidget(parent) {
     usernameLabel->setFont(font);
     passwordLabel->setFont(font);
 
-
-
     username = new QLineEdit(this);
     username->setMaximumSize(120,30);
 
@@ -42,7 +40,7 @@ Window::~Window() {}
 void Window::showWindow() {
      str = username->text();
      str2 = password->text();
-    if(str == "username" && str2 == "password")
+    if(str == "john" && str2 == "password")
     {
 
     MainWindow* mainW = new MainWindow();
@@ -50,5 +48,5 @@ void Window::showWindow() {
     this->close();
     }
 
-
 }
+

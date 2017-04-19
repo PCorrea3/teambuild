@@ -3,6 +3,7 @@
 #include "savings.h"
 #include "checking.h"
 #include "transfer.h"
+#include "window.h"
 #include <QPushButton>
 #include <QLabel>
 #include <QGridLayout>
@@ -30,6 +31,8 @@ class MainWindow : public QWidget {
       void showCheckings();
       void showTransfer();
       void transferFunds();
+
+
 
 private:
      QPushButton *savingsButton;

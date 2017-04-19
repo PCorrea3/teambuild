@@ -41,14 +41,19 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
 	checkingAcc->updateCheckingBalance(checking);
 	savingsAcc->updateSavingsBalance(savings);
 
+
     connect(this->savingsButton, SIGNAL(clicked()),this, SLOT(showSavings()));
     connect(this->checkingButton, SIGNAL(clicked()),this, SLOT(showCheckings()));
     connect(this->transferButton, SIGNAL(clicked()),this, SLOT(showTransfer()));
     connect(this->transWindow->getTransferButton(),SIGNAL(clicked()),
            this, SLOT(transferFunds()));
+
+
 }
 
 MainWindow::~MainWindow() {}
+
+
 double MainWindow::debtChecking(double amt) {
     this->checking+=amt;
     return checking;
