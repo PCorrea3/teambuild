@@ -11,7 +11,7 @@
 #include <QFont>
 #include<QLabel>
 #include<QString>
-#include<QByteArray>
+
 
 class QPushButton;
 
@@ -30,7 +30,6 @@ private:
      QLabel *passwordLabel;
      QLineEdit *username;
      QLineEdit *password;
-     const char* characters;
      QString str = "";
      QString str2 = "";
 

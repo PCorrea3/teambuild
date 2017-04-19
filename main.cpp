@@ -8,7 +8,7 @@ int main(int argc, char **argv) {
 
     Window window;
     window.show();
-    //MainWindow mainW;
-    //mainW.show();
+
+
 	return app.exec();
 }
